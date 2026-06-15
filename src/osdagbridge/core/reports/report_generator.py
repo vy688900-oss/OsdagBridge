@@ -3094,7 +3094,10 @@ def ch8_design_log(log_entries: List[str], input_dict: dict) -> str:
                     lines_tex.append(
                         rf'\textcolor{{osdagGreen}}{{{escaped}}}\\')
                 else:
-                    continue  # skip lines without a known level — Osdag patter
+                    continue  # skip lines without a known level — Osdag pattern
+    if not lines_tex:
+        lines_tex.append(r'\textit{No design log entries recorded.}\\[-0.5cm]')
+    log_body = '\n'.join(lines_tex)
 
     mode = str(input_dict.get(KEY_DESIGN_MODE, 'Optimized')).strip().lower()
     is_custom = mode in {'custom', 'customized'}
